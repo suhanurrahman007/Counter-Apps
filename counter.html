@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with Start & Stop using onclick</title>
+</head>
+
+<body>
+
+    <button onclick="startCounter()">Start</button>
+    <button onclick="stopCounter()">Stop</button>
+
+    <div id="counterDisplay">0</div>
+
+    <script>
+        let count = 0;
+        let intervalId;
+
+        const counterDisplay = document.getElementById('counterDisplay');
+
+        function startCounter() {
+            // Ensure only one interval is running at a time
+            if (!intervalId) {
+                intervalId = setInterval(function () {
+                    count++;
+                    counterDisplay.textContent = count;
+                }, 1000); // update every 1 second
+            }
+        }
+
+        function stopCounter() {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null; // clear the ID to ensure the interval can be restarted
+            }
+        }
+    </script>
+
+</body>
+
+</html>
